@@ -14,7 +14,7 @@ namespace WinTimeIt
             }
             TimedProcess timed = new TimedProcess(args);
             double[] results = timed.Execute();
-            Console.Write($"Time: {Math.Round(results[0],3)} seconds");
+            Console.Write($"\nTime: {Math.Round(results[0],3)} seconds");
             if (results[1] != 0)
             {
                 Console.Write("       ");
@@ -28,6 +28,7 @@ namespace WinTimeIt
                 Console.Write(":)");
                 Console.ResetColor();
             }
+            Console.Write("\n");//Making sure that newline is available
             Environment.Exit(0);
         }
     }
@@ -54,9 +55,5 @@ namespace WinTimeIt
             double total_seconds = (end - start).TotalMilliseconds / 1000;
             return new double[] { total_seconds, p.ExitCode };
         }
-    }
-    public class AppDataFile
-    {
-        //stored in k:v pairs. Has ShowReturnCode, UsePrintWrapper
     }
 }
