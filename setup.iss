@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "WinTimeIt"
-#define MyAppVersion "1.2"
+#define MyAppVersion "1.3"
 #define MyAppPublisher "Enderbyte Programs"
 #define MyAppURL "https://enderbyteprograms.weebly.com"
 #define MyAppExeName "timeit.exe"
@@ -23,7 +23,7 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 OutputDir=C:\Users\jorda\source\repos\WinTimeIt
-OutputBaseFilename=wintimeit-1.2-setup
+OutputBaseFilename=wintimeit-1.3-setup
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern

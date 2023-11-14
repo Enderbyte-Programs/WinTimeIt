@@ -11,7 +11,7 @@ namespace WinTimeIt
             bool prettyprint = !(args.Contains("-np") || args.Contains("--no-pretty-print"));
             if (args.Length < 1)
             {
-                Console.WriteLine("Please provide a command to execute. Example: timeit [-np -r] <command_with_args>");
+                Console.WriteLine("Please provide a command to execute. Example: timeit [-np -r -nl] <command_with_args>|--help");
                 Environment.Exit(1);
             }
             int sstartindex = 0;
@@ -27,7 +27,7 @@ namespace WinTimeIt
             }
             if (args.Contains("-h") || args.Contains("--help"))
             {
-                Console.WriteLine("WinTimeit\nThe GNU time command for Windows\n\nUsage: timeit [options] <command with args>\n[] means optional, <> means mandatory\n\nOptions:\n\n--help (alias -h) Print help menu and exit\n--version (" +
+                Console.WriteLine("WinTimeit\nCommand timing utility for Windows\n\nUsage: timeit [options] <command with args>\n[] means optional, <> means mandatory\n\nOptions:\n\n--help (alias -h) Print help menu and exit\n--version (" +
                     "alias -v) Print version information and exit\n" +
                     "-r (alias --return) timeit's return code will be the same as the command's return code\n" +
                     "-np (alias --noprettyprint) print time in seconds and return code with a single space to seperate, also with no emoticon\n" +
@@ -36,7 +36,7 @@ namespace WinTimeIt
             }
             if (args.Contains("-v") || args.Contains("--version"))
             {
-                Console.WriteLine("WinTimeit 2.0");
+                Console.WriteLine("WinTimeit 1.3");
                 Environment.Exit(0);
             }
             string[] outargs = new string[args.Length - sstartindex];
