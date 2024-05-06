@@ -29,9 +29,11 @@ namespace WinTimeIt
             {
                 Console.WriteLine("WinTimeit\nCommand timing utility for Windows\n\nUsage: timeit [options] <command with args>\n[] means optional, <> means mandatory\n\nOptions:\n\n--help (alias -h) Print help menu and exit\n--version (" +
                     "alias -v) Print version information and exit\n" +
-                    "-r (alias --return) timeit's return code will be the same as the command's return code\n" +
+                    "-r (alias --return) timeit's return code will be the same as the command's return code. (This will not affect the emoticon)\n" +
                     "-np (alias --noprettyprint) print time in seconds and return code with a single space to seperate, also with no emoticon\n" +
-                    "-nl Do not print newline after information");
+                    "-nl Do not print newline after information\n" +
+                    "-nt ** Do not print execution time information\n" +
+                    "-nr ** Do not print status code information");
                 Environment.Exit(0);
             }
             if (args.Contains("-v") || args.Contains("--version"))
