@@ -6,12 +6,16 @@ namespace WinTimeIt
 {
     internal class Program
     {
+        static bool ArrayLimitContains(string[] a,string search,int limit)
+        {
+            return a.Contains(search) && a.ToList().IndexOf(search) < limit;
+        }
         static void Main(string[] args)
         {
-            bool prettyprint = !(args.Contains("-np") || args.Contains("--no-pretty-print"));
+            
             if (args.Length < 1)
             {
-                Console.WriteLine("Please provide a command to execute. Example: timeit [-np -r -nl] <command_with_args>|--help");
+                Console.WriteLine("Please provide a command to execute. \nUsage: timeit [[-np -r -nl] <command_with_args>]|-h|-v\nExample: timeit -r msedge \"http://example.com\"");
                 Environment.Exit(1);
             }
             int sstartindex = 0;
@@ -25,22 +29,22 @@ namespace WinTimeIt
                     sstartindex++;
                 }
             }
-            if (args.Contains("-h") || args.Contains("--help"))
+
+            if (ArrayLimitContains(args,"-h",sstartindex) || ArrayLimitContains(args,"--help",sstartindex))
             {
                 Console.WriteLine("WinTimeit\nCommand timing utility for Windows\n\nUsage: timeit [options] <command with args>\n[] means optional, <> means mandatory\n\nOptions:\n\n--help (alias -h) Print help menu and exit\n--version (" +
                     "alias -v) Print version information and exit\n" +
                     "-r (alias --return) timeit's return code will be the same as the command's return code. (This will not affect the emoticon)\n" +
                     "-np (alias --noprettyprint) print time in seconds and return code with a single space to seperate, also with no emoticon\n" +
-                    "-nl Do not print newline after information\n" +
-                    "-nt ** Do not print execution time information\n" +
-                    "-nr ** Do not print status code information");
+                    "-nl Do not print newline after information\n");
                 Environment.Exit(0);
             }
-            if (args.Contains("-v") || args.Contains("--version"))
+            if (ArrayLimitContains(args, "-v", sstartindex) || ArrayLimitContains(args, "--version", sstartindex))
             {
-                Console.WriteLine("WinTimeit 1.3");
+                Console.WriteLine("WinTimeit 1.4 (c) 2023-2024 Enderbyte Programs. Some rights reserved.");
                 Environment.Exit(0);
             }
+            bool prettyprint = !(ArrayLimitContains(args, "-np", sstartindex) || ArrayLimitContains(args, "--no-pretty-print", sstartindex));
             string[] outargs = new string[args.Length - sstartindex];
             Array.Copy(args, sstartindex,outargs, 0,args.Length - sstartindex);
             TimedProcess timed = new TimedProcess(outargs);
@@ -71,7 +75,7 @@ namespace WinTimeIt
             }
             if (!args.Contains("-nl"))
             { Console.Write("\n"); }//Making sure that newline is available
-            if (args.Contains("-r") || args.Contains("--return"))
+            if (ArrayLimitContains(args, "-r", sstartindex) || ArrayLimitContains(args, "--return", sstartindex))
             {
                 //Return process exit value
                 Environment.Exit(Convert.ToInt16(results[1]));
